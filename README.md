@@ -5,7 +5,7 @@ Dedicated repository for Alura's Node.js course. Rest API using express + sequel
 
 Diagrama de banco de dados composto por quatro tabelas: Pessoas, Níveis, Turmas e Matrículas.
 
-![database-schema](./database-schema.png)
+![database-schema](./img/database-schema.png)
 
 #### A tabela Pessoas é composta pelas colunas:
 
