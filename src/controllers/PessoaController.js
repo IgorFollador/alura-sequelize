@@ -33,6 +33,21 @@ class PessoaController {
             return res.status(500).json(error.message);
         }
     }
+
+    static async updatePessoa(req, res) {
+        const { id } = req.params;
+        const formPessoa = req.body;
+        try {
+            await database.Pessoas.update(formPessoa, {
+                where: {
+                    id: Number(id)
+                }
+            })
+            return res.status(200).json(`Usuário de ID: ${id} atualizado`);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
 }
 
 module.exports = PessoaController
