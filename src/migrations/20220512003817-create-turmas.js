@@ -8,13 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      data_inicio: {
-        type: Sequelize.DATEONLY
-      },
       docente_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: 'Pessoas', key: 'id' }
+      },
+      data_inicio: {
+        type: Sequelize.DATEONLY
       },
       nivel_id: {
         allowNull: false,

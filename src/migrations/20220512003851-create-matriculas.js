@@ -11,7 +11,7 @@ module.exports = {
       status: {
         type: Sequelize.STRING
       },
-      estudantes_id: {
+      estudante_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: 'Pessoas', key: 'id' }
