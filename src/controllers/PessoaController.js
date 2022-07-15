@@ -6,7 +6,7 @@ class PessoaController {
             const allPessoas = await database.Pessoas.findAll();
             return res.status(200).json(allPessoas);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ message: error.message });
         }
     }
 
@@ -20,7 +20,7 @@ class PessoaController {
             });
             return res.status(200).json(pessoa);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ message: error.message });
         }
     }
 
@@ -30,7 +30,7 @@ class PessoaController {
             const pessoa = await database.Pessoas.create(formPessoa);
             return res.status(201).json(pessoa);
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ message: error.message });
         }
     }
 
@@ -42,10 +42,10 @@ class PessoaController {
                 where: {
                     id: Number(id)
                 }
-            })
+            });
             return res.status(200).json({ message: `ID ${id} atualizado` });
         } catch (error) {
-            return res.status(500).json(error.message);
+            return res.status(500).json({ message: error.message });
         }
     }
 
@@ -56,12 +56,12 @@ class PessoaController {
                 where: {
                     id: Number(id)
                 }
-            })
+            });
             return res.status(200).json({ message: `ID ${id} deletado` });
         } catch (error) {
-            res.status(500).json(error.message);
+            res.status(500).json({ message: error.message });
         }
     }
 }
 
-module.exports = PessoaController
+module.exports = PessoaController;
