@@ -62,6 +62,66 @@ class PessoaController {
             res.status(500).json({ message: error.message });
         }
     }
+
+    // Matriculas
+    static async readMatriculaByEstudanteIdMatriculaId(req, res) {
+        const { estudanteId, matriculaId } = req.params;
+        try {
+            const matricula = await database.Matriculas.findOne({ 
+                where: { 
+                    id: Number(matriculaId),
+                    estudante_id: Number(estudanteId) 
+                } 
+            });
+            return res.status(200).json(matricula);
+        } catch (error) {
+            return res.status(500).json({ message: error.message });
+        }
+    }
+
+    static async createMatriculaByEstudanteId(req, res) {
+        const { estudanteId } = req.params;
+        const formMatricula = { ...req.body, estudante_id: Number(estudanteId) };
+        try {
+            const matricula = await database.Matriculas.create(formMatricula);
+            return res.status(201).json(matricula);
+        } catch (error) {
+            return res.status(500).json({ message: error.message });
+        }
+    }
+
+    static async updateMatriculaByEstudanteIdMatriculaId(req, res) {
+        const { estudanteId, matriculaId } = req.params;
+        const formMatricula = req.body;
+        try {
+            await database.Matriculas.update(formMatricula, {
+                where: {
+                    id: Number(matriculaId),
+                    estudante_id: Number(estudanteId)
+                }
+            });
+            return res.status(200).json({ message: `ID ${matriculaId} atualizado` });
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ message: error.message });
+        }
+    }
+
+    static async deleteMatriculaByEstudanteIdMatriculaId(req, res) {
+        const { estudanteId, matriculaId } = req.params;
+        try {
+            await database.Matriculas.destroy({
+                where: {
+                    id: Number(matriculaId),
+                    estudante_id: Number(estudanteId)
+                }
+            });
+            return res.status(200).json({ message: `ID ${matriculaId} atualizado` });
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ message: error.message });
+        }
+    }
 }
 
 module.exports = PessoaController;
